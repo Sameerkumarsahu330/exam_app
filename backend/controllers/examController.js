@@ -2,7 +2,7 @@ import Question from '../models/Question.js';
 import Exam from '../models/Exam.js';
 
 export const startExam = async (req, res) => {
-    const questions = await Question.aggregate([{ $sample: { size: 5 }}]);
+    const questions = await Question.aggregate([{ $sample: { size: 2 }}]);//, { $project: { options: { isCorrect: 0 } }}
     res.json(questions);
 };
 
@@ -20,7 +20,7 @@ export const submitExam = async (req, res) => {
 
             return {
                 question: q._id,
-                selectedOption: ans.selectedOption,
+                selectedOption: correctOption.optionText,
                 isCorrect,
             };
         })
