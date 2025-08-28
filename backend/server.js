@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import questionRoutes from './routes/questionRoutes.js';
 import examRoutes from './routes/examRoutes.js';
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ const app = express();
 connectDB();
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser);
 
 // Routes
 app.use("/api/auth", authRoutes);
