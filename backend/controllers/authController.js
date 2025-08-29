@@ -38,12 +38,7 @@ export const registerStudent = async (req, res) => {
             password: hashedPassword
         });
 
-        res.status(201).json({
-            _id: user.id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id)
-        });
+        res.status(201).json({ message: "Registered"});
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
